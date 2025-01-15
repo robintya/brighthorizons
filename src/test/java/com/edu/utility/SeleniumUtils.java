@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.edu.factory.DriverFactory;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 
@@ -139,4 +142,18 @@ public class SeleniumUtils extends DriverFactory {
 		}
 		return false;
 	}
+	
+	public int getStatusCode(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("HEAD"); // Use HEAD for a lightweight check
+            connection.connect();
+            return connection.getResponseCode();
+        } catch (Exception e) {
+            logger.error("Error while checking server status: " + e.getMessage());
+            return -1; // Return an invalid status code to indicate failure
+        }
+    }
+
 }

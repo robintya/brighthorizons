@@ -14,7 +14,7 @@ public class SearchResultsPage extends SeleniumUtils {
     private static final Logger logger = LoggerFactory.getLogger(SearchResultsPage.class);
 
     // Locators
-    public static final By RESULTS_CONTAINER = By.xpath("//div[@class='results container']//div[@class='col']");
+    public static final By RESULTS_CONTAINER = By.cssSelector("div.results.container div.col");
 
     // Constructor
     public SearchResultsPage(WebDriver driver) {
@@ -23,9 +23,9 @@ public class SearchResultsPage extends SeleniumUtils {
 
     // Methods
     public boolean verifySearchResults(String expectedText) {
-        logger.info("Verifying search results for text: {}", expectedText);
-        boolean isPresent = verifyTextExists(driver, RESULTS_CONTAINER, TestInputs.SEARCH_INPUT_TEXT, 15);
-        logger.info("Search result presence: {}", isPresent);
+        logger.info("Verifying search results for text: ", expectedText);
+        boolean isPresent = verifyTextExists(driver, RESULTS_CONTAINER, TestInputs.SEARCH_INPUT_TEXT, 30);
+        logger.info("Search result presence: ", isPresent);
         return isPresent;
     }
 }

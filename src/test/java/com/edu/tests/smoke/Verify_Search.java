@@ -2,30 +2,37 @@ package com.edu.tests.smoke;
 
 import com.edu.base.BaseTest;
 import com.edu.config.TestInputs;
+import com.edu.pages.HomePage;
+import com.edu.pages.SearchResultsPage;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Verify_Search extends BaseTest {
 
-    @Test
-    public void verifySearchFunctionality() {
-    	boolean isPresent;
-        try {
-            // Perform search
-        	pageObjectManager.getHomePage().clickSearchIcon();
-        	isPresent = pageObjectManager.getHomePage().verifyIfElementExists();
-            Assert.assertTrue(isPresent, "Search field verification failed!");
+	@Test
+	public void verifySearchFunctionality() {
+		boolean isSearchFieldPresent;
+		boolean isSearchResultsPresent;
 
-            pageObjectManager.getHomePage().enterSearchText(TestInputs.SEARCH_INPUT_TEXT);
-            pageObjectManager.getHomePage().clickSearchButton();
+		// Initialize page objects
+		final HomePage homePage = pageObjectManager.getHomePage();
+		final SearchResultsPage searchResultsPage = pageObjectManager.getSearchResultsPage();
 
-            // Verify search results
-            isPresent = pageObjectManager.getSearchResultsPage()
-                    .verifySearchResults(TestInputs.SEARCH_INPUT_TEXT);
-            Assert.assertTrue(isPresent, "Search results verification failed!");
-        } catch (Exception e) {
-            Assert.fail("Test execution failed due to an exception: " + e.getMessage());
-        }
-    }
+		try {
+			// Perform search
+			homePage.clickSearchIcon();
+			isSearchFieldPresent = homePage.verifyIfElementExists();
+			Assert.assertTrue(isSearchFieldPresent, "Search field verification failed!");
+
+			homePage.enterSearchText(TestInputs.SEARCH_INPUT_TEXT);
+			homePage.clickSearchButton();
+
+			// Verify search results
+			isSearchResultsPresent = searchResultsPage.verifySearchResults(TestInputs.SEARCH_INPUT_TEXT);
+			Assert.assertTrue(isSearchResultsPresent, "Search results verification failed!");
+		} catch (Exception e) {
+			Assert.fail("Test execution failed due to an exception: " + e.getMessage());
+		}
+	}
 }
