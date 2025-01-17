@@ -7,6 +7,7 @@ public class PageObjectManager {
     private WebDriver driver;
     private HomePage homePage;
     private SearchResultsPage searchResultsPage;
+    private FindCenterPage findCenterPage;
 
     // Constructor to initialize WebDriver
     public PageObjectManager(WebDriver driver) {
@@ -21,5 +22,10 @@ public class PageObjectManager {
     // Getter for SearchResultsPage
     public SearchResultsPage getSearchResultsPage() {
         return searchResultsPage == null ? (searchResultsPage = new SearchResultsPage(driver)) : searchResultsPage;
+    }
+    
+    // Getter for FindCenterPage
+    public FindCenterPage getFindCenterPage() {
+        return findCenterPage == null ? (findCenterPage = new FindCenterPage(driver)) : findCenterPage;
     }
 }

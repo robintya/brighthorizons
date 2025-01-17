@@ -41,8 +41,15 @@
 		    <version>1.5.6</version>
 		    <scope>test</scope>
 		</dependency>
+		
+		<!-- Allure TestNG Integration -->
+	    <dependency>
+	        <groupId>io.qameta.allure</groupId>
+	        <artifactId>allure-testng</artifactId>
+	        <version>2.20.1</version>
+	    </dependency>
 	
-	</dependencies>
+	 </dependencies>
 	
 	<build>
     <plugins>
@@ -57,6 +64,16 @@
                 </suiteXmlFiles>
             </configuration>
         </plugin>
+        
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.10.0</version>
+            <configuration>
+                <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+            </configuration>
+        </plugin>
+      
     </plugins>
 </build>
   

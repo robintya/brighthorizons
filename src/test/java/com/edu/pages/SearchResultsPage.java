@@ -21,7 +21,7 @@ public class SearchResultsPage extends SeleniumUtils {
         this.driver = driver;
     }
 
-    // Methods
+    // Checks if the expected text is present in the list with in search results
     public boolean verifySearchResults(String expectedText) {
         logger.info("Verifying search results for text: ", expectedText);
         boolean isPresent = verifyTextExists(driver, RESULTS_CONTAINER, TestInputs.SEARCH_INPUT_TEXT, 30);

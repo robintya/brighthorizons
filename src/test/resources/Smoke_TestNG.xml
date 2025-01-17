@@ -1,8 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="SmokeTestSuite">
-    <test name="VerifySearchTest">
+
+	<listeners>
+	    <listener class-name="io.qameta.allure.testng.AllureTestNg" />
+	</listeners>
+
+    <test name="VerifyWebApplication">
         <classes>
-            <class name="com.edu.tests.smoke.Verify_Search" />
+            <class name="com.edu.tests.smoke.validateSearchFeature" />
+            <class name="com.edu.tests.smoke.validateFindCenterFeature" />
         </classes>
     </test>
 </suite>
